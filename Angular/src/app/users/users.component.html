@@ -1,0 +1,44 @@
+<button type="button" class="btn btn-danger" (click)="deleteAllUser()" style="float:left">Delete All</button>
+<!--Recherche-->
+<div class="col-md-8" style="float:right">
+    <div class="input-group mb-3">
+        <input class="form-control" placeholder="Recherche Par nom" [(ngModel)]="recherche" />
+
+    </div>
+</div>
+
+
+<!--Fin Recherche-->
+<table class="table table-bordered" *ngIf="users!=''">
+    <thead>
+        <tr>
+            <th scope=" col ">Id</th>
+            <th scope="col ">Nom</th>
+            <th scope="col ">Prénom</th>
+
+            <th scope="col ">Supprimer</th>
+            <th scope="col ">Détail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pers of users | filter:recherche">
+            <th scope="row ">{{ pers.id }}</th>
+            <td>{{ pers.nom }}</td>
+            <td>{{ pers.prenom }}</td>
+
+            <td>
+                <span (click)="deleteUserId([pers.id]) " style="color:black ">Supprimer</span>
+            </td>
+            <td>
+                <a [routerLink]="[ '/users', pers.id] " tyle="color:black ">Detail/Modifier</a>
+            </td>
+        </tr>
+
+        <ng-template #error>{{recherche}} n'existe pas</ng-template>
+
+    </tbody>
+</table>
+<div *ngIf="!users ">
+    <br />
+    <p>Table Vide!!!!</p>
+</div>

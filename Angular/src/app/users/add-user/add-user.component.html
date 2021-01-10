@@ -1,0 +1,35 @@
+<h3>Add User</h3>
+<div [hidden]="submitted">
+    <form #addUsersForm="ngForm">
+
+        <div class="form-group">
+            <label for="firstname">Nom</label>
+            <input type="text" class="form-control" id="noms" placeholder="Username" required name="noms" [(ngModel)]="user.nom" #nom="ngModel">
+            <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger">
+                Saisir un nom
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">Prénom</label>
+            <input type="text" class="form-control" id="prenoms" placeholder="LastName" required name="prenoms" [(ngModel)]="user.prenom" #prenom="ngModel">
+            <div [hidden]="prenom.valid || prenom.pristine" class="alert alert-danger">
+                Saisir votre prénom
+            </div>
+        </div>
+
+
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-dark" (click)="goBack()">Retour</button>
+            <button type="button" class="btn btn-dark" (click)="addUser()" [disabled]="!addUsersForm.form.valid">Ajouter</button>
+        </div>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <p>Soumis avec succès! <span class="badge badge-light"></span></p>
+    <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-dark" (click)="goBack()">Retour</button>
+        <button type="button" class="btn btn-dark" (click)="newUser()">Continue</button>
+    </div>
+</div>
